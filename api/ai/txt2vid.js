@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const meta = {
-  name: 'Text To zvideo',
+  name: 'Text To Video',
   desc: 'Generate a video URL from a text prompt using soli.aritek.app txt2videov3 endpoint',
   method: 'get',
   category: 'AI',
