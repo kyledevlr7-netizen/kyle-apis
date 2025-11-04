@@ -132,8 +132,8 @@ const chalk = require('chalk');
     res.sendFile(path.join(__dirname, 'docs', 'intro.html'));
   });
 
-  app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, 'docs', 'dashboard.html'));
+  app.get('/docs', (req, res) => {
+    res.sendFile(path.join(__dirname, 'docs', 'docs.html'));
   });
 
   logger.info('Loading API endpoints...');
