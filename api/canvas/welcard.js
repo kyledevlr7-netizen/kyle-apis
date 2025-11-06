@@ -6,7 +6,7 @@ const meta = {
   name: 'Welcome Card',
   desc: 'Generate a customizable welcome card image and return the PNG image binary',
   method: ['get', 'post'],
-  category: 'Image',
+  category: 'canvas',
   params: [
     { name: 'name', description: 'Name to display on the card', example: 'Welcome', required: true },
     { name: 'author', description: 'Author or participant name to display', example: 'Participants', required: true },
