@@ -21,8 +21,8 @@ const meta = {
       required: false
     },
     {
-      name: 'handle',
-      description: 'The Twitter handle of the user',
+      name: 'username',
+      description: 'Username of the user',
       example: '@ajirodesu',
       required: false
     },
@@ -61,6 +61,13 @@ const meta = {
       description: 'Whether to show verified badge (true/false)',
       example: 'true',
       required: false
+    },
+    {
+      name: 'theme',
+      description: 'Theme options, e.g. "dark" for dark mode',
+      example: 'dark',
+      required: false,
+      options: ['light', 'dark']
     }
   ]
 };
@@ -101,12 +108,12 @@ function roundedRect(ctx, x, y, w, h, r) {
 async function onStart({ req, res }) {
   let text, name = 'Doji Creates', handle = '@dojicreates', avatar_url = null,
       time = '2:17 AM', day = 'Tuesday', views = '192.6K Views',
-      tag = 'CODING LESSONS AND CODING MEMES', verified = true;
+      tag = 'CODING LESSONS AND CODING MEMES', verified = true, options;
 
   if (req.method === 'POST') {
-    ({ text, name, handle, avatar_url, time, day, views, tag, verified } = req.body);
+    ({ text, name, handle, avatar_url, time, day, views, tag, verified, options } = req.body);
   } else {
-    ({ text, name, handle, avatar_url, time, day, views, tag, verified } = req.query);
+    ({ text, name, handle, avatar_url, time, day, views, tag, verified, options } = req.query);
   }
 
   if (!text) {
@@ -116,6 +123,38 @@ async function onStart({ req, res }) {
   }
 
   verified = verified === 'true' || verified === true;
+  const mode = (options || 'light').toLowerCase();
+
+  const theme_list = {
+    light: {
+      background: '#ffffff',
+      avatarDefault: '#ccd6dd',
+      name: '#000000',
+      handle: '#536471',
+      bubble: '#f7f9f9',
+      shadowColor: 'rgba(0, 0, 0, 0.05)',
+      text: '#000000',
+      footer: '#75808a'
+    },
+    dark: {
+      background: '#000000',
+      avatarDefault: '#333333',
+      name: '#E7E9EA',
+      handle: '#8B98A5',
+      bubble: '#16181C',
+      shadowColor: 'rgba(0, 0, 0, 0.2)',
+      text: '#E7E9EA',
+      footer: '#6E767D'
+    }
+  };
+
+  if (!theme_list[mode]) {
+    return res.status(400).json({
+      error: `Invalid theme. Available themes: ${Object.keys(theme_list).join(', ')}`
+    });
+  }
+
+  const colors = theme_list[mode];
 
   const scale = 2; // For higher quality (retina-like)
   const baseWidth = 600;
@@ -148,7 +187,7 @@ async function onStart({ req, res }) {
     ctx.imageSmoothingQuality = 'high';
 
     // Background
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = colors.background;
     ctx.fillRect(0, 0, baseWidth, baseHeight);
 
     // Avatar
@@ -159,7 +198,7 @@ async function onStart({ req, res }) {
       // Default professional placeholder: a gray circle
       avatar = createCanvas(60, 60);
       const avatarCtx = avatar.getContext('2d');
-      avatarCtx.fillStyle = '#ccd6dd';
+      avatarCtx.fillStyle = colors.avatarDefault;
       avatarCtx.beginPath();
       avatarCtx.arc(30, 30, 30, 0, Math.PI * 2);
       avatarCtx.fill();
@@ -173,7 +212,7 @@ async function onStart({ req, res }) {
 
     // Name
     ctx.font = 'bold 16px Helvetica, Arial, sans-serif';
-    ctx.fillStyle = '#000000';
+    ctx.fillStyle = colors.name;
     const nameX = 85;
     const nameY = 35;
     ctx.fillText(name, nameX, nameY);
@@ -209,7 +248,7 @@ async function onStart({ req, res }) {
 
     // Handle
     ctx.font = '14px Helvetica, Arial, sans-serif';
-    ctx.fillStyle = '#536471';
+    ctx.fillStyle = colors.handle;
     ctx.fillText(handle, nameX, nameY + 20);
 
     // Text bubble
@@ -217,8 +256,8 @@ async function onStart({ req, res }) {
     const bubbleY = 70;
     const bubbleWidth = baseWidth - 60;
     const bubbleRadius = 12;
-    ctx.fillStyle = '#f7f9f9'; // Lighter gray for professional look
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillStyle = colors.bubble;
+    ctx.shadowColor = colors.shadowColor;
     ctx.shadowBlur = 5;
     ctx.shadowOffsetY = 2;
     roundedRect(ctx, bubbleX, bubbleY, bubbleWidth, bubbleHeight, bubbleRadius);
@@ -226,7 +265,7 @@ async function onStart({ req, res }) {
 
     // Tweet text
     ctx.font = '18px Helvetica, Arial, sans-serif';
-    ctx.fillStyle = '#000000';
+    ctx.fillStyle = colors.text;
     const textX = bubbleX + 20;
     const textY = bubbleY + bubblePadding;
     for (let i = 0; i < lines.length; i++) {
@@ -236,7 +275,7 @@ async function onStart({ req, res }) {
     // Footer info
     const footerY = bubbleY + bubbleHeight + 15;
     ctx.font = '12px Helvetica, Arial, sans-serif';
-    ctx.fillStyle = '#75808a';
+    ctx.fillStyle = colors.footer;
     const footerText = `${time} · ${day} · ${views} | ${tag.toUpperCase()}`;
     ctx.fillText(footerText, bubbleX + 20, footerY);
 
