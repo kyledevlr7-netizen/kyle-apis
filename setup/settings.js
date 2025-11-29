@@ -1,7 +1,7 @@
 module.exports = {
   name: "Shin APIs",
   description:
-    "This interactive interface allows you to explore and test our comprehensive collection of API endpoints in real-time.",
+    "Simple and easy to use",
   key: "ajiro2005",
   header: {
     status: "Online!",
@@ -15,18 +15,8 @@ module.exports = {
     },
   },
   icon: "/docs/image/icon.png",
-  operator: "ShinDesu",
+  operator: "AjiroDesu",
   telegram: "https://t.me/+AQO22J2q6KBlNWM1",
-  notification: [
-    {
-      title: "New API Added",
-      message:
-        "Blue Achieve and Loli API have been added to the documentation.",
-    },
-    {
-      title: "System Update",
-      message:
-        "The API documentation system has been updated to version 0.0.2.",
-    },
-  ],
+  messenger: "https://m.me/j/Aba0mwuz9PTv7bP9/",
+  github: "https://github.com/ajirodesu"
 };
