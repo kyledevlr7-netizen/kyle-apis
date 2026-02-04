@@ -9,7 +9,7 @@ const meta = {
     {
       name: 'text',
       desc: 'The text to display on the image',
-      example: 'AjiroDesu',
+      example: 'Kyle Bait-it',
       required: true
     }
   ]
