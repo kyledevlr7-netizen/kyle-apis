@@ -15,7 +15,7 @@ class Greetings3 {
     this.goodbyeBg = 'https://raw.githubusercontent.com/Zaxerion/databased/refs/heads/main/asset/20210811-203941.jpg';
     this.bg = null;
     this.avatar = 'https://raw.githubusercontent.com/Zaxerion/databased/refs/heads/main/asset/rin.jpg';
-    this.username = 'Lenz';
+    this.username = 'Kyle';
     this.type = null;
   }
 
@@ -105,7 +105,7 @@ const meta = {
     {
       name: 'username',
       desc: 'The username to display',
-      example: 'AjiroDesu',
+      example: 'Kyle Bait-it',
       required: true
     },
     {
