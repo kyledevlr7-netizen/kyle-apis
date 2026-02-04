@@ -121,7 +121,7 @@ const meta = {
     {
       name: 'username',
       desc: 'The username to display',
-      example: 'AjiroDesu',
+      example:'Kyle Bait-it',
       required: true
     },
     {
@@ -133,7 +133,7 @@ const meta = {
     {
       name: 'groupname',
       desc: 'The group name to display (required for welcome type)',
-      example: 'Ajiro HQ',
+      example: 'Kyle QH',
       required: false
     },
     {
