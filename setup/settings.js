@@ -1,8 +1,8 @@
 module.exports = {
-  name: "Shin APIs",
+  name: "Kyle APIs",
   description:
     "Simple and easy to use",
-  key: "ajiro2005",
+  key: "kyle2004",
   header: {
     status: "Online!",
     imageSrc: [
@@ -15,8 +15,8 @@ module.exports = {
     },
   },
   icon: "/docs/image/icon.png",
-  operator: "AjiroDesu",
-  telegram: "https://t.me/+AQO22J2q6KBlNWM1",
-  messenger: "https://m.me/j/Aba0mwuz9PTv7bP9/",
-  github: "https://github.com/ajirodesu"
+  operator: "Kyletheintrovert",
+  telegram: "N/A",
+  messenger: "https://m.me/j/kyletheintrovert/",
+  github: "https://github.com/kyledev"
 };
