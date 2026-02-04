@@ -19,7 +19,7 @@ class Greeting {
     this.bg = "https://raw.githubusercontent.com/Zaxerion/databased/refs/heads/main/asset/1px.png";
     this.avatar = "https://raw.githubusercontent.com/Zaxerion/databased/refs/heads/main/asset/default-avatar.png";
     this.guildIcon = "https://raw.githubusercontent.com/Zaxerion/databased/refs/heads/main/asset/default-avatar.png";
-    this.username = "Clyde";
+    this.username = "Kyle";
     this.guildName = "ServerName";
     this.memberCount = "0";
     this.colorTitleBorder = "#000000";
@@ -191,7 +191,7 @@ const meta = {
     {
       name: 'username',
       desc: 'The username to display',
-      example: 'AjiroDesu',
+      example: 'Kyle Bait-it',
       required: true
     },
     {
